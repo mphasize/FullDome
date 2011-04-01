@@ -10,6 +10,13 @@ I do this as part of a class I'm taking called "Immersive Data Visualisation" at
 Tools:
 ======
 
+Processing / FullDomeTemplate
+---
+Amazing Tool by Christopher Warnow! Warps your Processing Sketch into a dome master with some really nice OpenGL magic.
+For [more details and instructions](https://github.com/mphasize/FullDome/tree/master/Processing/FullDomeTemplate) on usage (german only so far...) click the link and scroll down to README...
+
+
+
 Processing / SimulationTemplate
 ---
 
