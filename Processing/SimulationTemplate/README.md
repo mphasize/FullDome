@@ -19,9 +19,9 @@ Mit Hilfe von *SPACE* könnt ihr zwischen dem flachen Rendering und
 der Kuppelsimulation umschalten.
 
 Weitere Optionen:
-*e* schaltet zwischen den (aktiven) Examples durch...
-*g* schaltet das Grid (in der Kuppelsimulation) ein oder aus
-*p* ändert die Art und Weise wie das Beispiel in die Kuppel projeziert wird
+*e* schaltet zwischen den (aktiven) Examples durch...  
+*g* schaltet das Grid (in der Kuppelsimulation) ein oder aus  
+*p* ändert die Art und Weise wie das Beispiel in die Kuppel projeziert wird  
 
 
 Neues Beispiel erstellen:

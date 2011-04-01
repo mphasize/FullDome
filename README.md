@@ -7,4 +7,12 @@ I do this as part of a class I'm taking called "Immersive Data Visualisation" at
 [Workspace](http://incom.org/workspace/2755)
 
 
+Tools:
+======
+
+Processing / SimulationTemplate
+---
+
+The SimulationTemplate creates a movable Dome and projects your interactive Sketches into it.  
+For [more details and instructions](https://github.com/mphasize/FullDome/tree/master/Processing/SimulationTemplate) on usage (german only so far...) click the link and scroll down to README...
 
