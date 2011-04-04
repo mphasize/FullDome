@@ -13,7 +13,7 @@ import processing.core.PVector;
  */
 public class RingMesh {
 
-	int segments = 9;
+	int segments = 18;
 	float[][] points;
 	float radius1;
 	float radius2;
@@ -54,19 +54,13 @@ public class RingMesh {
 	}
 
 	public void draw(PApplet p5) {
-		p5.pushMatrix();
 		p5.noFill();
 		p5.stroke(255);
-		p5.translate(position.x, position.y, position.z);
-		p5.rotateX(rotation.x);
-		p5.rotateY(rotation.y);
-		p5.rotateZ(rotation.z);
 		p5.beginShape(PApplet.TRIANGLE_STRIP);
 		for(int i = 0; i < points.length; i++) {
 			p5.vertex(points[i][0], points[i][1], points[i][2]);
 		}
 		p5.endShape();
-		p5.popMatrix();
 	}
 
 	public PVector getPosition() {
@@ -83,5 +77,9 @@ public class RingMesh {
 
 	public void setRotation(PVector rotation) {
 		this.rotation = rotation;
+	}
+
+	public float getHeight() {
+		return this.length;
 	}
 }

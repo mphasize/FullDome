@@ -7,6 +7,7 @@ package domeapp;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
+import visuals.DomeMesh;
 import visuals.RingMesh;
 
 /**
@@ -18,7 +19,8 @@ public class MeshTest extends PApplet implements PConstants {
 	private RingMesh mesh1;
 	private RingMesh mesh2;
 	private RingMesh mesh3;
-	private float runner;
+	private float runner, runner2;
+	private DomeMesh dome;
 
 	/**
 	 * @param args the command line arguments
@@ -30,35 +32,43 @@ public class MeshTest extends PApplet implements PConstants {
 	@Override
 	public void setup() {
 		size(1024, 768, OPENGL);
-		hint(PApplet.ENABLE_OPENGL_4X_SMOOTH);
+		//hint(PApplet.ENABLE_OPENGL_4X_SMOOTH);
 
 		mesh1 = new RingMesh(200, 100, 50);
-		mesh1.setPosition(new PVector(width/2, height/2, 100));
+		mesh1.setPosition(new PVector(width / 2, height / 2, 100));
 		mesh2 = new RingMesh(100, 50, 20);
-		mesh2.setPosition(new PVector(width/2, height/2, 150));
+		mesh2.setPosition(new PVector(width / 2, height / 2, 150));
 		mesh3 = new RingMesh(50, 0, 10);
-		mesh3.setPosition(new PVector(width/2, height/2, 170));
+		mesh3.setPosition(new PVector(width / 2, height / 2, 300));
+
+		dome = new DomeMesh(300, 150);
 	}
 
 	@Override
 	public void draw() {
 		background(50);
 		runner += 0.01f;
-		mesh1.setRotation(new PVector(0,0, runner));
-		mesh2.setRotation(new PVector(0,0, runner));
-		mesh3.setRotation(new PVector(0,0, runner));
+		runner2 += 0.01f;
+		translate(width / 2, height / 2, 0);
+
+
+		rotateY(runner2);
+		rotateZ(runner);
+
+		dome.draw(this);
+
+
 		mesh1.draw(this);
+		translate(0, 0, 50);
 		mesh2.draw(this);
+		translate(0, 0, 20);
 		mesh3.draw(this);
 	}
-
-
 
 	@Override
 	public void keyPressed() {
 		/* reset parameters */
 		if (key == 'r') {
-
 		}
 	}
 }
