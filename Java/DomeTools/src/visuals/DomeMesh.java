@@ -14,6 +14,7 @@ public class DomeMesh {
 
 	int segments = 5;
 	RingMesh[] rings = new RingMesh[segments];
+	boolean active = false;
 
 	public DomeMesh(float radius, float height) {
 		float angle = PApplet.HALF_PI / (float) segments;
@@ -25,11 +26,24 @@ public class DomeMesh {
 	}
 
 	public void draw(PApplet p5) {
+		p5.noFill();
 		p5.pushMatrix();
 		for (int i = 0; i < rings.length; i++) {
+			p5.stroke(200);
+			if (active && i == 0) {
+				p5.stroke(255,0,0);
+			}
 			rings[i].draw(p5);
 			p5.translate(0, 0, rings[i].getHeight());
 		}
 		p5.popMatrix();
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }

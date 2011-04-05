@@ -28,6 +28,18 @@ public class KinectMotionCapture extends PApplet implements PConstants {
 	DomeMesh dome;
 	PVector rArm;
 	PVector lArm;
+	float domeRotation = 0;
+	float domeRotationTarget = 0;
+	float beginRotation = 0;
+	float beginHandR = 0;
+	boolean gestureInProgress = false;
+
+	/**
+	 * @param args the command line arguments
+	 */
+	public static void main(String[] args) {
+		PApplet.main(new String[]{"kinedome.KinectMotionCapture"});
+	}
 
 	@Override
 	public void setup() {
@@ -44,21 +56,19 @@ public class KinectMotionCapture extends PApplet implements PConstants {
 	@Override
 	public void draw() {
 		background(0);
-		ambientLight(64, 64, 64);
-		lightSpecular(255, 255, 255);
-		directionalLight(224, 224, 224, .5f, 1, -1);
-
-		noFill();
-		stroke(255);
 
 		translate(width / 2, height, -600);
 		rotateY((mouseX / (float) width) * TWO_PI);
 		rotateX(-PI + ((mouseY / (float) height) * TWO_PI));
 
-		rotateX(HALF_PI);
-		dome.draw(this);
-		rotateX(-HALF_PI);
+		domeRotation += (domeRotationTarget - domeRotation) * 0.1f;
 
+		rotateX(HALF_PI);
+		pushMatrix();
+		rotateZ(domeRotation);
+		dome.draw(this);
+		popMatrix();
+		rotateX(-HALF_PI);
 
 		translate(-width / 2, -height, 600);
 
@@ -69,13 +79,33 @@ public class KinectMotionCapture extends PApplet implements PConstants {
 			line(0, height, -300 + (i * -50), width, height, -300 + (i * -50));
 		}
 
+		noStroke();
+		fill(255);
 		for (Skeleton s : skels.values()) {
-			for (float[] j : s.allCoords) {
+			for (int i = 0; i < s.allCoords.length; i++) {
+				float[] j = s.allCoords[i];
+				if (i == 6) {
+					if (j[1] < s.allCoords[3][1]) {
+						dome.setActive(true);
+						if (gestureInProgress) {
+							float delta = beginHandR - j[0];
+							domeRotationTarget = beginRotation + map(delta, 0,1, 0, TWO_PI);
+						} else {
+							beginHandR = j[0];
+							beginRotation = domeRotation;
+							gestureInProgress = true;
+						}
+					} else {
+						dome.setActive(false);
+					}
+				}
 				pushMatrix();
 				translate(j[0] * width, j[1] * height, -j[2] * 300);
 				sphere(2 * ballSize / j[2]);
 				popMatrix();
 			}
+			noFill();
+			stroke(255);
 			line(s.lFoot[0] * width, s.lFoot[1] * height, s.lFoot[2] * -300, s.lFoot[0] * width, height, s.lFoot[2] * -300);
 			PVector handRechts = new PVector(s.rHand[0], s.rHand[1], s.rHand[2]);
 			PVector elleRechts = new PVector(s.rElbow[0], s.rElbow[1], s.rElbow[2]);
@@ -91,7 +121,7 @@ public class KinectMotionCapture extends PApplet implements PConstants {
 // Here you can easily see the format of the OSC messages sent. For each user, the joints are named with
 // the joint named followed by user ID (head0, neck0 .... r_foot0; head1, neck1.....)
 	void oscEvent(OscMessage msg) {
-		msg.print();
+		//msg.print();
 
 		if (msg.checkAddrPattern("/joint") && msg.checkTypetag("sifff")) {
 			// We have received joint coordinates, let's find out which skeleton/joint and save the values ;)

@@ -18,29 +18,29 @@ public class Skeleton {
 	// We just use this class as a structure to store the joint coordinates sent by OSC.
 	// The format is {x, y, z}, where x and y are in the [0.0, 1.0] interval,
 	// and z is in the [0.0, 7.0] interval.
-	float head[] = new float[3];
-	float neck[] = new float[3];
-	float rCollar[] = new float[3];
-	float rShoulder[] = new float[3];
-	float rElbow[] = new float[3];
-	float rWrist[] = new float[3];
-	float rHand[] = new float[3];
-	float rFinger[] = new float[3];
-	float lCollar[] = new float[3];
-	float lShoulder[] = new float[3];
-	float lElbow[] = new float[3];
-	float lWrist[] = new float[3];
-	float lHand[] = new float[3];
-	float lFinger[] = new float[3];
-	float torso[] = new float[3];
-	float rHip[] = new float[3];
-	float rKnee[] = new float[3];
-	float rAnkle[] = new float[3];
-	float rFoot[] = new float[3];
-	float lHip[] = new float[3];
-	float lKnee[] = new float[3];
-	float lAnkle[] = new float[3];
-	float lFoot[] = new float[3];
+	float head[] = new float[3]; // 0
+	float neck[] = new float[3]; // 1
+	float rCollar[] = new float[3];// 2
+	float rShoulder[] = new float[3];// 3
+	float rElbow[] = new float[3];// 4
+	float rWrist[] = new float[3];// 5
+	float rHand[] = new float[3];// 6
+	float rFinger[] = new float[3];// 7
+	float lCollar[] = new float[3];// 8
+	float lShoulder[] = new float[3];// 9
+	float lElbow[] = new float[3];// 10
+	float lWrist[] = new float[3];// 11
+	float lHand[] = new float[3];// 12
+	float lFinger[] = new float[3];// 13
+	float torso[] = new float[3];// 14
+	float rHip[] = new float[3];// 15
+	float rKnee[] = new float[3];// 16
+	float rAnkle[] = new float[3];// 17
+	float rFoot[] = new float[3];// 18
+	float lHip[] = new float[3];// 19
+	float lKnee[] = new float[3];// 20
+	float lAnkle[] = new float[3];// 21
+	float lFoot[] = new float[3];// 22
 	float[] allCoords[] = {head, neck, rCollar, rShoulder, rElbow, rWrist,
 		rHand, rFinger, lCollar, lShoulder, lElbow, lWrist,
 		lHand, lFinger, torso, rHip, lHip};

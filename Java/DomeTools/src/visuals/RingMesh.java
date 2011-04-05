@@ -54,8 +54,6 @@ public class RingMesh {
 	}
 
 	public void draw(PApplet p5) {
-		p5.noFill();
-		p5.stroke(255);
 		p5.beginShape(PApplet.TRIANGLE_STRIP);
 		for(int i = 0; i < points.length; i++) {
 			p5.vertex(points[i][0], points[i][1], points[i][2]);
