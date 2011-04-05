@@ -58,11 +58,11 @@ public class MeshTest extends PApplet implements PConstants {
 		dome.draw(this);
 
 
-		mesh1.draw(this);
+		//mesh1.draw(this);
 		translate(0, 0, 50);
-		mesh2.draw(this);
+		//mesh2.draw(this);
 		translate(0, 0, 20);
-		mesh3.draw(this);
+		//mesh3.draw(this);
 	}
 
 	@Override
