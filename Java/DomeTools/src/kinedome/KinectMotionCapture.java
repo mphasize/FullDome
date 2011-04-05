@@ -86,7 +86,8 @@ public class KinectMotionCapture extends PApplet implements PConstants {
 				float[] j = s.allCoords[i];
 				if (i == 6) {
 					if (j[1] < s.allCoords[3][1]) {
-						dome.setActive(true);
+						float simplePointHeight = s.allCoords[3][1] - j[1];
+						dome.setActive((int)(simplePointHeight*10));
 						if (gestureInProgress) {
 							float delta = beginHandR - j[0];
 							domeRotationTarget = beginRotation + map(delta, 0,1, 0, TWO_PI);
@@ -96,7 +97,7 @@ public class KinectMotionCapture extends PApplet implements PConstants {
 							gestureInProgress = true;
 						}
 					} else {
-						dome.setActive(false);
+						dome.setActive(-1);
 					}
 				}
 				pushMatrix();
