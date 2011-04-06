@@ -24,6 +24,8 @@ public class Example1 extends DomeSketchImp {
 		pie = new PieChart(p5);
 		pie.addNode(new Node(15, "Sketches"));
 		pie.addNode(new Node(77, "Applications"));
+		pie.addNode(new Node(25, "Wars"));
+		pie.addNode(new Node(16, "Hipps"));
 
 		pie.setPosition(p5.width / 2, p5.height / 2);
 		pie.setScale(200);

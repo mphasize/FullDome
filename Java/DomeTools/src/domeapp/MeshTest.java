@@ -8,6 +8,7 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
 import visuals.DomeMesh;
+import visuals.Pyramid;
 import visuals.RingMesh;
 
 /**
@@ -21,6 +22,7 @@ public class MeshTest extends PApplet implements PConstants {
 	private RingMesh mesh3;
 	private float runner, runner2;
 	private DomeMesh dome;
+	private Pyramid pyramid;
 
 	/**
 	 * @param args the command line arguments
@@ -42,6 +44,8 @@ public class MeshTest extends PApplet implements PConstants {
 		mesh3.setPosition(new PVector(width / 2, height / 2, 300));
 
 		dome = new DomeMesh(300, 150);
+		pyramid = new Pyramid();
+
 	}
 
 	@Override
@@ -55,7 +59,9 @@ public class MeshTest extends PApplet implements PConstants {
 		rotateY(runner2);
 		rotateZ(runner);
 
-		dome.draw(this);
+		dome.draw(this.g);
+
+		pyramid.draw(g);
 
 
 		//mesh1.draw(this);

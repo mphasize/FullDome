@@ -9,6 +9,7 @@ import dome.InteractiveDome;
 import domeExamples.DomeSketch;
 import domeExamples.Example1;
 import domeExamples.Example2;
+import domeExamples.Example3;
 import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -53,6 +54,7 @@ public class DomeTester extends PApplet implements PConstants {
 		canvas.endDraw();
 
 		/* Load Examples */
+		examples.add(new Example3(canvas));
 		examples.add(new Example2(canvas));
 		examples.add(new Example1(canvas));
 		/* Prepare first example */

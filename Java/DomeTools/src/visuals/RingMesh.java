@@ -5,6 +5,7 @@
 package visuals;
 
 import processing.core.PApplet;
+import processing.core.PGraphics;
 import processing.core.PVector;
 
 /**
@@ -53,7 +54,7 @@ public class RingMesh {
 		}
 	}
 
-	public void draw(PApplet p5) {
+	public void draw(PGraphics p5) {
 		p5.beginShape(PApplet.TRIANGLE_STRIP);
 		for(int i = 0; i < points.length; i++) {
 			p5.vertex(points[i][0], points[i][1], points[i][2]);

@@ -66,7 +66,7 @@ public class KinectMotionCapture extends PApplet implements PConstants {
 		rotateX(HALF_PI);
 		pushMatrix();
 		rotateZ(domeRotation);
-		dome.draw(this);
+		dome.draw(this.g);
 		popMatrix();
 		rotateX(-HALF_PI);
 

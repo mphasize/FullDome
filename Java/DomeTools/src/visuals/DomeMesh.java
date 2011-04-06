@@ -5,6 +5,7 @@
 package visuals;
 
 import processing.core.PApplet;
+import processing.core.PGraphics;
 
 /**
  *
@@ -25,7 +26,7 @@ public class DomeMesh {
 		}
 	}
 
-	public void draw(PApplet p5) {
+	public void draw(PGraphics p5) {
 		p5.noFill();
 		p5.pushMatrix();
 		for (int i = 0; i < rings.length; i++) {
