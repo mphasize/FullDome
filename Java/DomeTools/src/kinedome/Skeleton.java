@@ -51,24 +51,6 @@ public class Skeleton {
 		this.p5 = p5;
 	}
 
-	public void drawStickfigure() {
-		p5.stroke(255);
-		p5.noFill();
-		line(head, neck);
-		line(neck, rCollar);
-		line(neck, lCollar);
-		line(lCollar, lShoulder);
-		line(lShoulder, lElbow);
-		line(lElbow, lWrist);
-		line(lWrist, lHand);
-		line(rCollar, rShoulder);
-		line(rShoulder, rElbow);
-		line(rElbow, rWrist);
-		line(rWrist, rHand);
-		line(lShoulder, torso);
-		line(rShoulder, torso);
-	}
-
 	private void line(float[] from, float[] to) {
 		p5.line(from[0] * scale, from[1] * scale, -from[2] * scale, to[0] * scale, to[1] * scale, -to[2] * scale);
 	}
