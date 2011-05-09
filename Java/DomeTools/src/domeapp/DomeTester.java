@@ -103,6 +103,7 @@ public class DomeTester extends PApplet implements PConstants {
 		/* reset parameters */
 		if (key == 'r') {
 			dome.resetPosition();
+			example.setup();
 		}
 		if (key == ' ') {
 			previewMode = !previewMode;

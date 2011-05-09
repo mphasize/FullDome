@@ -244,6 +244,9 @@ public class Dome implements PConstants {
 
 	public void setDistance(float distance) {
 		this.distance = distance > 0 ? distance : 0;
+		if(!(p0 instanceof PVector)) {
+			p0 = new PVector();
+		}
 		p0.set(0, -this.distance, radius);
 	}
 
