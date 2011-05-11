@@ -6,6 +6,8 @@
  */
 
 import processing.opengl.*;
+import oscP5.*;
+import netP5.*;
 
 InteractiveDome dome;
 PGraphics canvas;
@@ -18,6 +20,8 @@ int[] projections = {
 };
 int projection = 0;
 PFont font;
+OscP5 osc;
+
 
 
 void setup() {
@@ -35,6 +39,7 @@ void setup() {
   /* Load Examples 
    Make a copy of BeispielX, modify it, and add it to this list!
    */
+   examples.add(new CursorExample(canvas));
   examples.add(new Beispiel1(canvas));
   examples.add(new Beispiel2(canvas));  
   
@@ -46,6 +51,10 @@ void setup() {
   dome = new InteractiveDome();
   dome.setRadius(400);
   dome.setTexture(canvas, projections[projection]);
+  
+  /* Prepare OSC Receiver */
+  osc = new OscP5(this, 8000);
+  
 }
 
 
@@ -108,5 +117,11 @@ void keyPressed() {
     System.out.println("Switched to example " + exampleIndex);
     example.setup();
   }
+  example.keyPressed(key, keyCode);  
+  
+}
+
+void oscEvent(OscMessage msg) {
+  example.oscEvent(msg);
 }
 

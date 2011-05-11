@@ -16,19 +16,18 @@ float domeRotation = 0;
 float domeRotationTarget = 0;
 float beginRotation = 0;
 float beginHandR = 0;
-boolean gestureInProgress = false;
+boolean gestureLeft = false;
+boolean gestureRight = false;
 
 void setup() {
-  size(1024, 1024, OPENGL); //Keep 4/3 aspect ratio, since it matches the kinect's.
+  size(1024, 1024, OPENGL); 
   oscP5 = new OscP5(this, "127.0.0.1", 7110);
   noStroke();
-
   dome = new DomeMesh(width / 2, width/2);
 }
 
 
-void draw()
-{
+void draw() {
   background(0);
 
   translate(width / 2, height / 2, 0);
@@ -49,37 +48,43 @@ void draw()
   noStroke();
   fill(255);
   for (Skeleton s : skels.values()) {
-			for (int i = 0; i < s.allCoords.length; i++) {
-      float[] j = s.allCoords[i];
-    if (i == 6) {
-      if (j[1] < s.allCoords[3][1]) {
-        float simplePointHeight = s.allCoords[3][1] - j[1];
-        dome.setActive((int)(simplePointHeight*10));
-        if (gestureInProgress) {
-          float delta = beginHandR - j[0];
-          domeRotationTarget = beginRotation + map(delta, 0,1, 0, -PI);
-        } 
-        else {
-          beginHandR = j[0];
-          beginRotation = domeRotation;
-          gestureInProgress = true;
-        }
+    // Mapping der rechten Hand -> absolute Rotation des Domes
+    float[] j = s.allCoords[12];
+    if (j[1] < s.allCoords[9][1]) {
+      float simplePointHeight = s.allCoords[9][1] - j[1];
+      dome.setActive((int)(simplePointHeight*10));
+      if (gestureRight) {
+        float delta = beginHandR - j[0];
+        domeRotationTarget = beginRotation + map(delta, 0,1, 0, -PI);
       } 
       else {
-        dome.setActive(-1);
+        beginHandR = j[0];
+        beginRotation = domeRotation;
+        gestureRight = true;
       }
+    } 
+    else {
+      dome.setActive(-1);
+      gestureRight = false;
+    }
+    // Mapping der linken Hand -> relative Beschleuning des Domes
+    j = s.allCoords[6];
+    if (j[1] < s.allCoords[3][1]) {
+      gestureLeft = true;
+      float simpleSpeed = j[0] - s.allCoords[3][0];
+      domeRotationTarget += simpleSpeed;
+    } 
+    else {
+      gestureLeft = false;
     }
   }
 }
-}
 
 
 
-/* incoming osc message are forwarded to the oscEvent method. */
 // Here you can easily see the format of the OSC messages sent. For each user, the joints are named with 
 // the joint named followed by user ID (head0, neck0 .... r_foot0; head1, neck1.....)
 void oscEvent(OscMessage msg) {
-  //msg.print();
 
   if (msg.checkAddrPattern("/joint") && msg.checkTypetag("sifff")) {
     // We have received joint coordinates, let's find out which skeleton/joint and save the values ;)
@@ -222,5 +227,4 @@ void oscEvent(OscMessage msg) {
     skels.remove(id);
   }
 }
-
 

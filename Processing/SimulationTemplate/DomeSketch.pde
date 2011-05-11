@@ -19,5 +19,11 @@ public class DomeSketch {
   public DomeSketch(PGraphics g) {
     this.init(g);
   }
+
+  public void keyPressed(char key, int keyCode) {
+  }
+
+  public void oscEvent(OscMessage msg) {
+  }
 }
 
